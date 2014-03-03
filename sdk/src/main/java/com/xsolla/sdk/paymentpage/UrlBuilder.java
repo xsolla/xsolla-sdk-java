@@ -7,7 +7,6 @@ import com.xsolla.sdk.User;
 import org.apache.commons.collections.SetUtils;
 import org.apache.commons.exec.util.MapUtils;
 import org.apache.commons.lang3.StringUtils;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -48,10 +47,7 @@ public class UrlBuilder {
     private void init(Project project, Map<String, String> immutableParameters) {
         this.project = project;
         this.immutableParameters = immutableParameters;
-        this.parameters = new HashMap<>();
-        this.defaultParameters = new HashMap<>();
-        this.hiddenParameters = new HashSet<>();
-        this.lockedParameters = new HashSet<>();
+        this.clear();
     }
 
     /**
@@ -196,16 +192,20 @@ public class UrlBuilder {
             parameters.put("signparams", lockedParametersString);
         }
         parameters.put("sign", this.generateSign(parameters));
-        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        AsyncHttpClient.BoundRequestBuilder boundRequestBuilder = asyncHttpClient.prepareGet(baseUrl);
-        for (String key : parameters.keySet()) {
-            boundRequestBuilder.addQueryParameter(key, parameters.get(key));
-        }
-        return boundRequestBuilder.build().getUrl();
+        return this.buildUrl(baseUrl, parameters);
     }
 
     public String getUrl() throws NoSuchAlgorithmException {
         return this.getUrl(BASE_URL);
+    }
+
+    protected String buildUrl(String baseUrl, Map<String, String> parameters) {
+        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
+        AsyncHttpClient.BoundRequestBuilder boundRequestBuilder = asyncHttpClient.prepareGet(baseUrl);
+        for (String key : new TreeSet<>(parameters.keySet())) {
+            boundRequestBuilder.addQueryParameter(key, parameters.get(key));
+        }
+        return boundRequestBuilder.build().getUrl();
     }
 
     protected String getLockedParametersString() {
@@ -224,14 +224,14 @@ public class UrlBuilder {
         TreeSet<String> keys = this.getSignParametersSortedKeys();
         StringBuilder parametersForSign = new StringBuilder();
         for (String key : keys) {
-            if (this.parameters.containsKey(key)) {
-                parametersForSign.append(key).append('=').append(this.parameters.get(key));
+            if (parameters.containsKey(key)) {
+                parametersForSign.append(key).append('=').append(parameters.get(key));
             }
         }
         parametersForSign.append(this.project.getSecretKey());
-        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-        messageDigest.update(parametersForSign.toString().getBytes(), 0, parametersForSign.length());
-        return new BigInteger(1, messageDigest.digest()).toString(16);
+        byte[] sign = MessageDigest.getInstance("MD5")
+                .digest(parametersForSign.toString().getBytes());
+        return String.format("%032x",new BigInteger(1, sign));
     }
 
     protected TreeSet<String> getSignParametersSortedKeys() {
@@ -241,7 +241,8 @@ public class UrlBuilder {
     }
 
     protected UrlBuilder clear() {
-        this.parameters = new LinkedHashMap<>();
+        this.parameters = new HashMap<>();
+        this.defaultParameters = new HashMap<>();
         this.hiddenParameters = new HashSet<>();
         this.lockedParameters = this.defaultLockedParameters;
         return this;
