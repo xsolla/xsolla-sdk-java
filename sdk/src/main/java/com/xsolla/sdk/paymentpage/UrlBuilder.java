@@ -144,13 +144,13 @@ public class UrlBuilder {
     public UrlBuilder setInvoice(Invoice invoice, boolean lockForUser, boolean hideFromUser) {
         BigDecimal out = invoice.getVirtualCurrencyAmount();
         if (out != null) {
-            this.setParameter("out", out.toString());
+            this.setParameter("out", out.toString(), lockForUser, hideFromUser);
         }
         BigDecimal amount = invoice.getAmount();
         if (amount != null) {
-            this.setParameter("amount", amount.toString());
+            this.setParameter("amount", amount.toString(), lockForUser, hideFromUser);
         }
-        this.setParameter("currency", invoice.getCurrency());
+        this.setParameter("currency", invoice.getCurrency(), lockForUser, hideFromUser);
         return this;
     }
 
