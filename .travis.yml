@@ -1,5 +1,5 @@
 language: java
-script: cd sdk ; mnv test
+script: cd sdk ; mvn test
 
 jdk:
   - oraclejdk7
