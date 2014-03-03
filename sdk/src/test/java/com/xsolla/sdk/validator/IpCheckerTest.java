@@ -29,7 +29,7 @@ public class IpCheckerTest {
     @Test
     public void testCheckIpSecureException() throws SecurityException {
         thrown.expect(SecurityException.class);
-        thrown.expectMessage("Client IP not found in white list");
+        thrown.expectMessage("Your IP address is not in white list.");
         this.ipChecker.checkIp("185.30.20.25");
     }
 }

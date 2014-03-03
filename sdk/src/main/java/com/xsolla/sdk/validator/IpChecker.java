@@ -34,7 +34,7 @@ public class IpChecker {
             clientIpInSubnets = clientIpInSubnets || subnetInfo.isInRange(clientIp);
         }
         if (!clientIpInSubnets) {
-            throw new SecurityException("You IP address is not in white list.");
+            throw new SecurityException("Your IP address is not in white list.");
         }
     }
 }
