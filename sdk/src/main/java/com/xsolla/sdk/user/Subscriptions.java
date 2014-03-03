@@ -10,6 +10,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.lang.Exception;
+import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.security.MessageDigest;
 import java.util.*;
@@ -133,7 +134,9 @@ public class Subscriptions {
             Collection<String> val = parameters.get(key);
             signString += key + "=" + val.iterator().next();
         }
-        return new String(MessageDigest.getInstance("MD5").digest((signString + this.project.getSecretKey()).getBytes()));
+        byte[] sign = MessageDigest.getInstance("MD5")
+                .digest(signString.getBytes());
+        return String.format("%032x",new BigInteger(1, sign));
     }
 
     public boolean checkResponseStatus(Response response) throws Exception

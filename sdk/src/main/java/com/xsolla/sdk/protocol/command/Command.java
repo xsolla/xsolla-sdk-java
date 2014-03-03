@@ -47,9 +47,9 @@ public abstract class Command {
             signStringBuilder.append(request.getParam(param));
         }
         signStringBuilder.append(this.project.getSecretKey());
-        MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-        messageDigest.update(signStringBuilder.toString().getBytes(), 0, signStringBuilder.length());
-        return new BigInteger(1, messageDigest.digest()).toString(16);
+        byte[] sign = MessageDigest.getInstance("MD5")
+                .digest(signStringBuilder.toString().getBytes());
+        return String.format("%032x",new BigInteger(1, sign));
     }
 
     protected Date getDateXsolla(String format, String dateSting) {
