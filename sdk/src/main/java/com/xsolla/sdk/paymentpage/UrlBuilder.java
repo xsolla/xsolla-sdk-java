@@ -16,7 +16,8 @@ import java.util.List;
 
 public class UrlBuilder {
 
-    static final String BASE_URL = "https://secure.xsolla.com/paystation2/?";
+    public static final String BASE_URL = "https://secure.xsolla.com/paystation2/?";
+    public static final String SANDBOX_URL = "https://sandbox-secure.xsolla.com/paystation2/?";
 
     protected Project project;
 
