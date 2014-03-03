@@ -14,7 +14,7 @@ public class Invoice {
     }
 
     public Invoice setVirtualCurrencyAmount(BigDecimal virtualCurrencyAmount) {
-        this.virtualCurrencyAmount = virtualCurrencyAmount.setScale(2, BigDecimal.ROUND_CEILING);
+        this.virtualCurrencyAmount = virtualCurrencyAmount.setScale(2, BigDecimal.ROUND_FLOOR);
         return this;
     }
 
@@ -23,7 +23,7 @@ public class Invoice {
     }
 
     public Invoice setAmount(BigDecimal amount) {
-        this.amount = amount.setScale(2, BigDecimal.ROUND_CEILING);
+        this.amount = amount.setScale(2, BigDecimal.ROUND_FLOOR);
         return this;
     }
 

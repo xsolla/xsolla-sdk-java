@@ -17,7 +17,7 @@ public class StandardProtocolInvoice {
 
     public StandardProtocolInvoice(long xsollaPaymentId, BigDecimal virtualCurrencyAmount, User user, Date date) {
         this.xsollaPaymentId = xsollaPaymentId;
-        this.virtualCurrencyAmount = virtualCurrencyAmount.setScale(2, BigDecimal.ROUND_CEILING);
+        this.virtualCurrencyAmount = virtualCurrencyAmount.setScale(2, BigDecimal.ROUND_FLOOR);
         this.user = user;
         this.date = date;
         this.dryRun = false;

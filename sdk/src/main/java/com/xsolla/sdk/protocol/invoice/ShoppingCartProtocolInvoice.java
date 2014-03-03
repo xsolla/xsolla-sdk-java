@@ -24,7 +24,7 @@ public class ShoppingCartProtocolInvoice {
 
     public ShoppingCartProtocolInvoice(long xsollaPaymentId, BigDecimal amount, String v1, String currency, Date datetime) {
         this.xsollaPaymentId = xsollaPaymentId;
-        this.amount = amount.setScale(2, BigDecimal.ROUND_CEILING);
+        this.amount = amount.setScale(2, BigDecimal.ROUND_FLOOR);
         this.v1 = v1;
         this.currency = currency;
         this.datetime = datetime;
@@ -84,7 +84,7 @@ public class ShoppingCartProtocolInvoice {
 
     public ShoppingCartProtocolInvoice setUserAmount(BigDecimal userAmount) {
         if (userAmount != null) {
-            this.userAmount = userAmount.setScale(2, BigDecimal.ROUND_CEILING);
+            this.userAmount = userAmount.setScale(2, BigDecimal.ROUND_FLOOR);
         } else {
             this.userAmount = null;
         }
@@ -106,7 +106,7 @@ public class ShoppingCartProtocolInvoice {
 
     public ShoppingCartProtocolInvoice setTransferAmount(BigDecimal transferAmount) {
         if (transferAmount != null) {
-            this.transferAmount = transferAmount.setScale(2, BigDecimal.ROUND_CEILING);
+            this.transferAmount = transferAmount.setScale(2, BigDecimal.ROUND_FLOOR);
         } else {
             this.transferAmount = null;
         }
