@@ -22,7 +22,7 @@ public class UrlBuilderTest {
         this.user = new User("user_v1")
                 .setV2("user_v2")
                 .setV3("user_v3")
-                .setEmail("example@example.com")
+                .setEmail("email@example.com")
                 .setPhone("user_phone")
                 .setUserIP("user_userIp");
         this.invoice = new Invoice()
@@ -68,6 +68,20 @@ public class UrlBuilderTest {
                 this.urlBuilder.getUrl()
         );
     }
+
+    /*
+    @Test
+    public void testClearSignedParameters() throws NoSuchAlgorithmException {
+        this.urlBuilder.setUser(this.user, false, false);
+        assertEquals(
+                "https://secure.xsolla.com/paystation2/?email=email%40example.com" +
+                        "&phone=user_phone&project=7096&sign=5b7c4eab43356844ec631771121277f5&signparams=allowSubscription%2Ccurrency%2C" +
+                        "fastcheckout%2Cid_package%2Cout%2Cproject%2Csignparams%2Ctheme%2Cv0&" +
+                        "userip=user_userIp&v1=user_v1&v2=user_v2&v3=user_v3",
+                this.urlBuilder.getUrl()
+        );
+    }
+    */
 
 
 }

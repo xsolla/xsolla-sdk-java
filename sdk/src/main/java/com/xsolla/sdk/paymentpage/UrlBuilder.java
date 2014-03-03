@@ -214,7 +214,7 @@ public class UrlBuilder {
         if (SetUtils.isEqualSet(lockedParameters, this.defaultLockedParameters)) {
             return "";
         }
-        return this.implodeUniqueParameters(new ArrayList<String>(this.defaultLockedParameters));
+        return this.implodeUniqueParameters(new ArrayList<String>(this.lockedParameters));
     }
 
     protected String implodeUniqueParameters(List<String> parameters) {
@@ -245,7 +245,8 @@ public class UrlBuilder {
         this.parameters = new HashMap<>();
         this.defaultParameters = new HashMap<>();
         this.hiddenParameters = new HashSet<>();
-        this.lockedParameters = this.defaultLockedParameters;
+        this.lockedParameters = new HashSet<>();
+        this.lockedParameters.addAll(this.defaultLockedParameters);
         return this;
     }
 }
