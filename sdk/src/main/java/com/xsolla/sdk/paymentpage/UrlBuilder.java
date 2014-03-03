@@ -184,7 +184,7 @@ public class UrlBuilder {
         return this.setParameter("country",  country);
     }
 
-    public String getUrl() throws NoSuchAlgorithmException {
+    public String getUrl(String baseUrl) throws NoSuchAlgorithmException {
         Map<String, String> parameters = MapUtils.merge(this.parameters, this.immutableParameters);
         parameters.put("project", String.valueOf(this.project.getProjectId()));
         if (!this.hiddenParameters.isEmpty()) {
@@ -197,11 +197,15 @@ public class UrlBuilder {
         }
         parameters.put("sign", this.generateSign(parameters));
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        AsyncHttpClient.BoundRequestBuilder boundRequestBuilder = asyncHttpClient.prepareGet(BASE_URL);
+        AsyncHttpClient.BoundRequestBuilder boundRequestBuilder = asyncHttpClient.prepareGet(baseUrl);
         for (String key : parameters.keySet()) {
             boundRequestBuilder.addQueryParameter(key, parameters.get(key));
         }
         return boundRequestBuilder.build().getUrl();
+    }
+
+    public String getUrl() throws NoSuchAlgorithmException {
+        return this.getUrl(BASE_URL);
     }
 
     protected String getLockedParametersString() {
