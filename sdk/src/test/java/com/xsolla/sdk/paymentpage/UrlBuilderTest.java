@@ -81,5 +81,39 @@ public class UrlBuilderTest {
         );
     }
 
+    @Test
+    public void testDefaultSignedParameters() throws NoSuchAlgorithmException {
+        this.urlBuilder.setInvoice(this.invoice)
+                .unlockParameterForUser("currency")
+                .unlockParameterForUser("currency")
+                .lockParameterForUser("currency");
+        assertEquals(
+                "https://secure.xsolla.com/paystation2/?currency=EUR&out=1.11&project=7096&sign=5bbc52cd72d7b3491025a7d6cca0cb70",
+                this.urlBuilder.getUrl()
+        );
+    }
+
+    @Test
+    public void testFluentInterface() throws NoSuchAlgorithmException {
+        this.invoice.setAmount(new BigDecimal(0.1));
+        String url = this.urlBuilder.clear()
+                .setLocale("EN")
+                .setCountry("US")
+                .setParameter("limit", "14", true, true)
+                .setUser(this.user)
+                .setInvoice(this.invoice)
+                .unlockParameterForUser("v1")
+                .lockParameterForUser("limit")
+                .getUrl();
+        assertEquals(
+                "https://secure.xsolla.com/paystation2/?country=US&currency=EUR&email=email%40example.com&hidden=limit" +
+                        "&limit=14&local=EN&out=1.11&phone=user_phone&project=7096&sign=8a14b8d25938da4b28379444423c87aa" +
+                        "&signparams=allowSubscription%2Ccurrency%2Cemail%2Cfastcheckout%2Cid_package%2Climit%2Cout%2C" +
+                        "phone%2Cproject%2Csignparams%2Csum%2Ctheme%2Cuserip%2Cv0%2Cv2%2Cv3&sum=0.10&userip=user_userIp" +
+                        "&v1=user_v1&v2=user_v2&v3=user_v3",
+                url
+        );
+    }
+
 
 }

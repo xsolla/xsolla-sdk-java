@@ -148,7 +148,7 @@ public class UrlBuilder {
         }
         BigDecimal amount = invoice.getAmount();
         if (amount != null) {
-            this.setParameter("amount", amount.toString(), lockForUser, hideFromUser);
+            this.setParameter("sum", amount.toString(), lockForUser, hideFromUser);
         }
         this.setParameter("currency", invoice.getCurrency(), lockForUser, hideFromUser);
         return this;
