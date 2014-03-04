@@ -69,7 +69,6 @@ public class UrlBuilderTest {
         );
     }
 
-    /*
     @Test
     public void testClearSignedParameters() throws NoSuchAlgorithmException {
         this.urlBuilder.setUser(this.user, false, false);
@@ -81,7 +80,6 @@ public class UrlBuilderTest {
                 this.urlBuilder.getUrl()
         );
     }
-    */
 
 
 }

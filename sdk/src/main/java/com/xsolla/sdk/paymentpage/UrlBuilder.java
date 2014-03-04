@@ -210,15 +210,15 @@ public class UrlBuilder {
     }
 
     protected String getLockedParametersString() {
-        Set<String> lockedParameters = this.getSignParametersSortedKeys();
+        TreeSet<String> lockedParameters = this.getSignParametersSortedKeys();
         if (SetUtils.isEqualSet(lockedParameters, this.defaultLockedParameters)) {
             return "";
         }
-        return this.implodeUniqueParameters(new ArrayList<String>(this.lockedParameters));
+        return this.implodeUniqueParameters(lockedParameters);
     }
 
-    protected String implodeUniqueParameters(List<String> parameters) {
-        return StringUtils.join(new HashSet<>(parameters), ',');
+    protected String implodeUniqueParameters(Collection<String> parameters) {
+        return StringUtils.join(parameters, ',');
     }
 
     protected String generateSign(Map<String, String> parameters) throws NoSuchAlgorithmException {
