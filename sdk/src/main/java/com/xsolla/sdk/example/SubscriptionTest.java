@@ -1,13 +1,7 @@
 package com.xsolla.sdk.example;
 
-import com.ning.http.client.AsyncHttpClient;
-import com.xsolla.sdk.Invoice;
 import com.xsolla.sdk.Project;
-import com.xsolla.sdk.Subscription;
 import com.xsolla.sdk.User;
-import com.xsolla.sdk.user.Subscriptions;
-
-import java.util.List;
 
 public class SubscriptionTest {
     static public void main(String[] args) throws Exception {

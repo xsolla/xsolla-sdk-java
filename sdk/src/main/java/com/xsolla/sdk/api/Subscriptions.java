@@ -1,4 +1,4 @@
-package com.xsolla.sdk.user;
+package com.xsolla.sdk.api;
 
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.FluentStringsMap;
