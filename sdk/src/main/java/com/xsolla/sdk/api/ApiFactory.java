@@ -2,6 +2,7 @@ package com.xsolla.sdk.api;
 
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.AsyncHttpClientConfig;
+import com.ning.http.client.providers.netty.NettyAsyncHttpProviderConfig;
 import com.xsolla.sdk.Project;
 
 public class ApiFactory {
@@ -32,7 +33,10 @@ public class ApiFactory {
     }
 
     protected AsyncHttpClient getAsyncHttpClient() {
-        AsyncHttpClientConfig.Builder configBuilder = new AsyncHttpClientConfig.Builder();
+        NettyAsyncHttpProviderConfig nettyAsyncHttpProviderConfig = new NettyAsyncHttpProviderConfig()
+                .addProperty(NettyAsyncHttpProviderConfig.USE_BLOCKING_IO, "true");
+        AsyncHttpClientConfig.Builder configBuilder = new AsyncHttpClientConfig.Builder()
+                .setAsyncHttpClientProviderConfig(nettyAsyncHttpProviderConfig);
         return new AsyncHttpClient(configBuilder.build());
     }
 }
