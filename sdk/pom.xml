@@ -14,7 +14,7 @@
 
     <groupId>com.xsolla</groupId>
     <artifactId>sdk</artifactId>
-    <version>0.3.7-SNAPSHOT</version>
+    <version>0.5.2-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Xsolla SDK</name>
     <description>
@@ -30,8 +30,9 @@
     </licenses>
     <scm>
         <url>https://github.com/xsolla/xsolla-sdk-java</url>
+        <connection>scm:git:https://github.com/xsolla/xsolla-sdk-java</connection>
         <developerConnection>scm:git:https://github.com/xsolla/xsolla-sdk-java</developerConnection>
-    </scm>
+  </scm>
     <developers>
         <developer>
             <id>coocos</id>
