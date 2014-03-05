@@ -1,19 +1,20 @@
 package com.xsolla.sdk;
 
 public class Subscription {
-    private int id;
-    private int type;
-    private int name;
-    private int currency;
 
-    public Subscription(int id, int name, int type, int currency) {
+    protected int id;
+    protected String type;
+    protected String name;
+    protected String currency;
+
+    public Subscription(int id, String name, String type, String currency) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.currency = currency;
     }
 
-    public int getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
@@ -21,11 +22,11 @@ public class Subscription {
         return id;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 }
