@@ -29,8 +29,8 @@
         </license>
     </licenses>
     <scm>
-        <url>scm:git:https://github.com/xsolla/xsolla-sdk-java</url>
-        <connection>scm:git:https://github.com/xsolla/xsolla-sdk-java</connection>
+        <url>https://github.com/xsolla/xsolla-sdk-java</url>
+        <developerConnection>scm:git:https://github.com/xsolla/xsolla-sdk-java</developerConnection>
     </scm>
     <developers>
         <developer>
