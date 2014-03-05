@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <groupId>com.xsolla</groupId>
     <artifactId>sdk</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.3.7-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Xsolla SDK</name>
+    <description>
+        An official PHP SDK for interacting with Xsolla HTTP API.
+        Xsolla is the authorized reseller and merchant providing e-commerce services for online games.
+    </description>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>scm:git:https://github.com/xsolla/xsolla-sdk-java</url>
+        <connection>scm:git:https://github.com/xsolla/xsolla-sdk-java</connection>
+    </scm>
+    <developers>
+        <developer>
+            <id>coocos</id>
+            <name>Alexander Bezrukov</name>
+            <email>a.bezrukov@xsolla.com</email>
+        </developer>
+    </developers>
 
     <dependencies>
         <dependency>
@@ -85,13 +113,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <remoteTagging>false</remoteTagging>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
-
 
 </project>
