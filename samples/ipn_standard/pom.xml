@@ -6,7 +6,7 @@
 
     <groupId>ipn_standard</groupId>
     <artifactId>ipn_standard</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.6.0</version>
 
     <repositories>
         <repository>
@@ -18,18 +18,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>6.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.29</version>
@@ -37,7 +25,7 @@
         <dependency>
             <groupId>com.xsolla</groupId>
             <artifactId>sdk</artifactId>
-            <version>0.1-SNAPSHOT</version>
+            <version>0.6.0</version>
         </dependency>
     </dependencies>
 
