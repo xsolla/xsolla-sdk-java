@@ -6,7 +6,7 @@
 
     <groupId>ipn_shoppingcart</groupId>
     <artifactId>ipn_shoppingcart</artifactId>
-    <version>0.6.0</version>
+    <version>1.0.0</version>
 
     <repositories>
         <repository>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.xsolla</groupId>
             <artifactId>sdk</artifactId>
-            <version>0.6.0</version>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
 
