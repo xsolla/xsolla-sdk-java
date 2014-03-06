@@ -1,4 +1,4 @@
-xsolla-sdk-java
+Xsolla SDK for Java
 ===============
 
 [![Build Status](https://travis-ci.org/xsolla/xsolla-sdk-java.png?branch=master)](https://travis-ci.org/xsolla/xsolla-sdk-java)
@@ -62,3 +62,7 @@ public class PaymentPage {
     }
 }
 ```
+
+### Receive [Instant Payment Notification](http://xsolla.github.io/en/currency.html)
+
+For receiving IPN requests you should implement [storage](https://github.com/xsolla/xsolla-sdk-java/tree/master/sdk/src/main/java/com/xsolla/sdk/protocol/storage) interfaces.
