@@ -37,21 +37,21 @@ public class MobilePaymentApi {
     protected Project project;
     protected String url;
     protected AsyncHttpClient asyncHttpClient;
-    protected boolean isTest;
 
     public MobilePaymentApi(AsyncHttpClient asyncHttpClient, String baseUrl, Project project)
-    {
-        this(asyncHttpClient, baseUrl, project, false);
-    }
-
-    public MobilePaymentApi(AsyncHttpClient asyncHttpClient, String baseUrl, Project project, boolean isTest)
     {
         this.asyncHttpClient = asyncHttpClient;
         this.url = baseUrl + API_URL;
         this.project = project;
-        this.isTest = isTest;
     }
 
+    /**
+     * Issue an invoice to the user.
+     * @param user User
+     * @param invoice Invoice, that contains amount of game currency and rubles.
+     * @return Invoice with ID.
+     * @throws Exception
+     */
     public Invoice createInvoice(final User user, final Invoice invoice) throws Exception {
         final String email = user.getEmail();
         final int projectId = this.project.getProjectId();
@@ -73,16 +73,27 @@ public class MobilePaymentApi {
         this.checkCodeResult(resultDocument);
         Invoice resultInvoice = new Invoice();
         String resultInvoiceValue = this.getFirstNodeValueByTag(resultDocument, "invoice");
-        if (resultInvoiceValue != null) {
-            resultInvoice.setId(Long.parseLong(resultInvoiceValue));
-        }
-        return resultInvoice;
+        return resultInvoice.setId(Long.parseLong(resultInvoiceValue));
     }
 
+    /**
+     * Determine the amount of game currency, which the user will get paying a certain sum in Russian rubles.
+     * @param user User
+     * @param amount BigDecimal amount in rubles.
+     * @return Invoice, that contains amount of game currency and rubles.
+     * @throws Exception
+     */
     public Invoice calculateVirtualCurrencyAmount(User user, BigDecimal amount) throws Exception {
         return this.calculate(user, "sum", amount.toString());
     }
 
+    /**
+     * Calculate the sum in rubles, which the user has to pay to get a certain amount of game currency.
+     * @param user User
+     * @param virtualCurrencyAmount BigDecimal amount in game currency.
+     * @return Invoice, that contains amount of game currency and rubles.
+     * @throws Exception
+     */
     public Invoice calculateAmount(User user, BigDecimal virtualCurrencyAmount) throws Exception {
         return this.calculate(user, "out", virtualCurrencyAmount.toString());
     }
@@ -106,13 +117,13 @@ public class MobilePaymentApi {
         return value == null ? "" : value.toString();
     }
 
-    protected String getFirstNodeValueByTag(Document document, String tagName) {
+    protected String getFirstNodeValueByTag(Document document, String tagName) throws InvalidResponseException {
         NodeList nodeList = document.getElementsByTagName(tagName);
-        if (nodeList.getLength() > 0) {
-            Node node = nodeList.item(0);
-            return node.getFirstChild().getNodeValue();
+        if (nodeList.getLength() == 0) {
+            throw new InvalidResponseException(String.format("Response not contains element with tag '%s'", tagName));
         }
-        return null;
+        Node node = nodeList.item(0);
+        return node.getFirstChild().getNodeValue();
     }
 
     protected StringBuilder createSignStringBuilder(LinkedHashMap<String, String> parameters) {
@@ -148,7 +159,7 @@ public class MobilePaymentApi {
         }
     }
 
-    protected void checkCodeResult(Document result) {
+    protected void checkCodeResult(Document result) throws InvalidResponseException {
         String codeString = this.getFirstNodeValueByTag(result, "result");
         int code = Integer.parseInt(codeString);
         String comment = this.getFirstNodeValueByTag(result, "comment");

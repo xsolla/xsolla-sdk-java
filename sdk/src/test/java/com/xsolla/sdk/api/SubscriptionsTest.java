@@ -6,6 +6,7 @@ import com.ning.http.client.FluentStringsMap;
 import com.ning.http.client.ListenableFuture;
 import com.ning.http.client.Response;
 import com.xsolla.sdk.*;
+import com.xsolla.sdk.api.SubscriptionsApi;
 import com.xsolla.sdk.exception.InvalidArgumentException;
 import org.junit.After;
 import org.junit.Before;
@@ -19,7 +20,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 public class SubscriptionsTest {
-    protected Subscriptions subscriptions;
+    protected SubscriptionsApi subscriptions;
     protected AsyncHttpClient clientMock;
     protected Project projectMock;
     protected AsyncHttpClient.BoundRequestBuilder requestBuilderMock;
@@ -58,7 +59,7 @@ public class SubscriptionsTest {
         when(this.subscriptionMock.getType()).thenReturn(subscriptionMockType);
         this.invoiceMock = mock(Invoice.class);
         when(this.invoiceMock.getAmount()).thenReturn(invoiceMockAmount);
-        this.subscriptions = new Subscriptions(this.clientMock, this.projectMock);
+        this.subscriptions = new SubscriptionsApi(this.clientMock, this.projectMock);
     }
 
     @After
