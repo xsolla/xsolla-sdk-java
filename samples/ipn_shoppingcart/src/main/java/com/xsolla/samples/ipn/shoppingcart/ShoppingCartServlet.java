@@ -4,7 +4,6 @@ import com.xsolla.samples.ipn.shoppingcart.storage.JdbcPaymentShoppingCartStorag
 import com.xsolla.sdk.Project;
 import com.xsolla.sdk.protocol.ProtocolFactory;
 import com.xsolla.sdk.protocol.ShoppingCartProtocol;
-import com.xsolla.sdk.protocol.StandardProtocol;
 import com.xsolla.sdk.protocol.http.ServletHttpAdapter;
 import com.xsolla.sdk.protocol.request.Request;
 import com.xsolla.sdk.protocol.response.Response;
@@ -33,7 +32,7 @@ public class ShoppingCartServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.3.208/sdk", "sdk", "xsolla" );
+            Connection connection = DriverManager.getConnection("jdbc:mysql://DB_HOST/DB_NAME", "DB_USER", "DB_PASSWORD" );
 
             ServletHttpAdapter servletHttpAdapter = new ServletHttpAdapter(request, response);
 

@@ -33,16 +33,14 @@ public class StandardServlet extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.3.208/sdk", "sdk", "xsolla");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://DB_HOST/DB_NAME", "DB_USER", "DB_PASSWORD");
 
             ServletHttpAdapter servletHttpAdapter = new ServletHttpAdapter(request, response);
 
             Request xsollaRequest = servletHttpAdapter.getRequest();
             Project project = new Project(PROJECT_ID, PROJECT_KEY);
 
-            //NullUserStorage userStorage = new NullUserStorage();
             JdbcUserStorage userStorage = new JdbcUserStorage(connection);
-            //NullPaymentStandardStorage paymentStorage = new NullPaymentStandardStorage();
             JdbcPaymentStandardStorage paymentStorage = new JdbcPaymentStandardStorage(connection);
 
             ProtocolFactory protocolFactory = new ProtocolFactory(project);
