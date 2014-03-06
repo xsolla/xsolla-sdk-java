@@ -5,7 +5,4 @@ public class InvoiceNotFoundException extends XsollaException {
     public InvoiceNotFoundException(String message) {
         super(message);
     }
-
-    public InvoiceNotFoundException() {
-    }
 }
