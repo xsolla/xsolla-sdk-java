@@ -8,6 +8,7 @@ An official SDK for interacting with [Xsolla HTTP API](http://xsolla.github.io/)
 ## Requirements
 
 * JDK 1.7
+* Maven 3
 
 ## Installation
 
