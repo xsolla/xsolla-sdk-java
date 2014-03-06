@@ -1,6 +1,6 @@
 package com.xsolla.sdk.protocol.response;
 
-
+import com.xsolla.sdk.Version;
 import java.util.HashMap;
 
 public class Response {
@@ -11,7 +11,7 @@ public class Response {
 
     public Response() {
         this.headers = new HashMap<String, String>();
-        this.headers.put("X-Xsolla-SDK", "java-sdk/0.1 jre/" + System.getProperty("java.version"));
+        this.headers.put("X-Xsolla-SDK", new Version().toString());
         this.content = "";
         this.contentType = "Content-type: text/xml; charset=\"UTF-8\"";
     }
