@@ -12,7 +12,6 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
-import java.util.List;
 
 public class UrlBuilder {
 
@@ -53,8 +52,8 @@ public class UrlBuilder {
 
     /**
      * Additional parameters are described in documentation http://xsolla.github.io/en/pswidget.html#title4
-     * @param name
-     * @param value
+     * @param name Parameter name
+     * @param value Parameter value
      * @param lockForUser Denies user to change parameter value on payment page. Also parameter will be hidden on payment page
      * @param hideFromUser Hides parameter value on payment page
      * @return
@@ -78,8 +77,8 @@ public class UrlBuilder {
     /**
      * Additional parameters are described in documentation http://xsolla.github.io/en/pswidget.html#title4
      * Parameter be hidden and locked, see setParameter(String name, String value, boolean lockForUser, boolean hideFromUser)
-     * @param name
-     * @param value
+     * @param name Parameter name
+     * @param value Parameter value
      * @return
      */
     public UrlBuilder setParameter(String name, String value) {
@@ -88,7 +87,7 @@ public class UrlBuilder {
 
     /**
      * Denies user change parameter value on payment page
-     * @param name
+     * @param name Parameter name
      * @return
      */
     public UrlBuilder lockParameterForUser(String name) {
@@ -182,10 +181,11 @@ public class UrlBuilder {
     }
 
     public String getUrl(String baseUrl) throws NoSuchAlgorithmException {
+        @SuppressWarnings("unchecked")
         Map<String, String> parameters = MapUtils.merge(this.parameters, this.immutableParameters);
         parameters.put("project", String.valueOf(this.project.getProjectId()));
         if (!this.hiddenParameters.isEmpty()) {
-            String implodedHiddenParameters = this.implodeUniqueParameters(new ArrayList<String>(this.hiddenParameters));
+            String implodedHiddenParameters = this.implodeUniqueParameters(new ArrayList<>(this.hiddenParameters));
             parameters.put("hidden", implodedHiddenParameters);
         }
         String lockedParametersString = this.getLockedParametersString();
