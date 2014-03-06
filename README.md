@@ -128,3 +128,13 @@ public class StandardServlet extends HttpServlet {
 ```
 
 If your WEB server software does not support JavaEE Servlets, you should implement [IHttpAdapter](https://github.com/xsolla/xsolla-sdk-java/blob/master/sdk/src/main/java/com/xsolla/sdk/protocol/http/IHttpAdapter.java).
+
+### Samples
+
+All samples you can find in [samples](https://github.com/xsolla/xsolla-sdk-java/tree/master/samples) folder.
+
+## Additional resources
+
+* [Website](http://xsolla.com)
+* [Documentation](http://xsolla.github.io)
+* [Status](http://status.xsolla.com)
