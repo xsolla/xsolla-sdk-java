@@ -126,6 +126,8 @@ public class StandardServlet extends HttpServlet {
     }
 }
 ```
+[IpChecker](https://github.com/xsolla/xsolla-sdk-java/blob/master/sdk/src/main/java/com/xsolla/sdk/validator/IpChecker.java) - additional security level for situations when your secret key is compromised.
+It's a optional parameter for ProtocolFactory and you can skip it for development and testing environment.
 
 If your WEB server software does not support JavaEE Servlets, you should implement [IHttpAdapter](https://github.com/xsolla/xsolla-sdk-java/blob/master/sdk/src/main/java/com/xsolla/sdk/protocol/http/IHttpAdapter.java).
 
