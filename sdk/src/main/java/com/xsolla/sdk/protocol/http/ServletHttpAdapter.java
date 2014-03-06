@@ -21,8 +21,8 @@ public class ServletHttpAdapter implements IHttpAdapter {
     }
 
     /**
-     * XSolla SDK works only with GET method
-     * @return
+     * Convert Servlet request to com.xsolla.sdk.request.Request.
+     * @return Request
      */
     public Request getRequest() {
         Request request = new Request();
@@ -44,6 +44,10 @@ public class ServletHttpAdapter implements IHttpAdapter {
         return request;
     }
 
+    /**
+     * Reply to Xsolla. Write to Servlet response.
+     * @param response Response
+     */
     public void sendResponse(Response response) {
         try {
             this.httpServletResponse.resetBuffer();

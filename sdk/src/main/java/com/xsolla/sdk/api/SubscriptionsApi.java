@@ -49,6 +49,7 @@ public class SubscriptionsApi {
 
     /**
      * Search subscription by User
+     *
      * @param user User
      * @return List<Subscription>
      * @throws Exception
@@ -59,9 +60,9 @@ public class SubscriptionsApi {
     }
 
     /**
-     *
+     * Search subscription by User and type
      * @param user
-     * @param type String ("card", "paypal", "yandex", "wm")
+     * @param type May be: "card", "paypal", "yandex", "wm"
      * @return List<Subscription>
      * @throws Exception
      */

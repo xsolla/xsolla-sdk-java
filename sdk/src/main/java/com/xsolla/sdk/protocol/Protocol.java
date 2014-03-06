@@ -35,6 +35,11 @@ abstract public class Protocol {
         return project;
     }
 
+    /**
+     * Handle IPN request. Use IHttpAdapter for integrate to your WEB server software.
+     * @param request
+     * @return Response
+     */
     public Response run(Request request) {
         CommandResponse commandResponse;
         try {

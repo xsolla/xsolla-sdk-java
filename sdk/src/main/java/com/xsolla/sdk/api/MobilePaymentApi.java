@@ -47,6 +47,7 @@ public class MobilePaymentApi {
 
     /**
      * Issue an invoice to the user.
+     *
      * @param user User
      * @param invoice Invoice, that contains amount of game currency and rubles.
      * @return Invoice with ID.
@@ -78,6 +79,7 @@ public class MobilePaymentApi {
 
     /**
      * Determine the amount of game currency, which the user will get paying a certain sum in Russian rubles.
+     *
      * @param user User
      * @param amount BigDecimal amount in rubles.
      * @return Invoice, that contains amount of game currency and rubles.
@@ -89,6 +91,7 @@ public class MobilePaymentApi {
 
     /**
      * Calculate the sum in rubles, which the user has to pay to get a certain amount of game currency.
+     *
      * @param user User
      * @param virtualCurrencyAmount BigDecimal amount in game currency.
      * @return Invoice, that contains amount of game currency and rubles.

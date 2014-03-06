@@ -22,6 +22,13 @@ public class ShoppingCartProtocolInvoice {
 
     private Map<String, List<String>> difference;
 
+    /**
+     * @param xsollaPaymentId Unique
+     * @param amount
+     * @param v1
+     * @param currency
+     * @param datetime
+     */
     public ShoppingCartProtocolInvoice(long xsollaPaymentId, BigDecimal amount, String v1, String currency, Date datetime) {
         this.xsollaPaymentId = xsollaPaymentId;
         this.amount = amount.setScale(2, BigDecimal.ROUND_FLOOR);
