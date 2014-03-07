@@ -5,6 +5,8 @@ import com.xsolla.sdk.Project;
 import com.xsolla.sdk.User;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 
@@ -33,7 +35,7 @@ public class UrlBuilderTest {
     }
 
     @Test
-    public void testGetLink() throws NoSuchAlgorithmException {
+    public void testGetLink() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?project=7096&sign=094eb3c634f2612dead38608dc20eaec",
                 this.urlBuilder.getUrl()
@@ -41,7 +43,7 @@ public class UrlBuilderTest {
     }
 
     @Test
-    public void testGetLinkSandbox() throws NoSuchAlgorithmException {
+    public void testGetLinkSandbox() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://sandbox-secure.xsolla.com/paystation2/?project=7096&sign=094eb3c634f2612dead38608dc20eaec",
                 this.urlBuilder.getUrl(UrlBuilder.SANDBOX_URL)
@@ -49,19 +51,19 @@ public class UrlBuilderTest {
     }
 
     @Test
-    public void testIgnoreBlankParameters() throws NoSuchAlgorithmException {
+    public void testIgnoreBlankParameters() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.urlBuilder.setParameter("description", "");
         this.testGetLink();
     }
 
     @Test
-    public void testClear() throws NoSuchAlgorithmException {
+    public void testClear() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.urlBuilder.setCountry("US").clear();
         this.testGetLink();
     }
 
     @Test
-    public void testHiddenParameters() throws NoSuchAlgorithmException {
+    public void testHiddenParameters() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.urlBuilder.setInvoice(this.invoice);
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?currency=EUR&out=1.11&project=7096&sign=5bbc52cd72d7b3491025a7d6cca0cb70",
@@ -70,7 +72,7 @@ public class UrlBuilderTest {
     }
 
     @Test
-    public void testClearSignedParameters() throws NoSuchAlgorithmException {
+    public void testClearSignedParameters() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.urlBuilder.setUser(this.user, false, false);
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?email=email%40example.com" +
@@ -82,7 +84,7 @@ public class UrlBuilderTest {
     }
 
     @Test
-    public void testDefaultSignedParameters() throws NoSuchAlgorithmException {
+    public void testDefaultSignedParameters() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.urlBuilder.setInvoice(this.invoice)
                 .unlockParameterForUser("currency")
                 .unlockParameterForUser("currency")
@@ -94,7 +96,7 @@ public class UrlBuilderTest {
     }
 
     @Test
-    public void testFluentInterface() throws NoSuchAlgorithmException {
+    public void testFluentInterface() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         this.invoice.setAmount(new BigDecimal(0.1));
         String url = this.urlBuilder.clear()
                 .setLocale("EN")

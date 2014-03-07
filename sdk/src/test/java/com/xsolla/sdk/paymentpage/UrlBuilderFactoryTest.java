@@ -3,6 +3,8 @@ package com.xsolla.sdk.paymentpage;
 import com.xsolla.sdk.Project;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import static org.junit.Assert.assertEquals;
 
@@ -18,7 +20,7 @@ public class UrlBuilderFactoryTest {
     }
 
     @Test
-    public void testGetPayStation() throws NoSuchAlgorithmException {
+    public void testGetPayStation() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?marketplace=paystation&project=7096&sign=094eb3c634f2612dead38608dc20eaec",
                 this.urlBuilderFactory.getPayStation().getUrl()
@@ -26,7 +28,7 @@ public class UrlBuilderFactoryTest {
     }
 
     @Test
-    public void testGetCreditCards() throws NoSuchAlgorithmException {
+    public void testGetCreditCards() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?marketplace=landing&pid=1380&project=7096&sign=457a3f06ea55593b6204b992963cf762&theme=201",
                 this.urlBuilderFactory.getCreditCards().getUrl()
@@ -34,7 +36,7 @@ public class UrlBuilderFactoryTest {
     }
 
     @Test
-    public void testGetPayDesk() throws NoSuchAlgorithmException {
+    public void testGetPayDesk() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?marketplace=paydesk&project=7096&sign=094eb3c634f2612dead38608dc20eaec",
                 this.urlBuilderFactory.getPayDesk().getUrl()
@@ -42,7 +44,7 @@ public class UrlBuilderFactoryTest {
     }
 
     @Test
-    public void testGetMobilePayment() throws NoSuchAlgorithmException {
+    public void testGetMobilePayment() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?marketplace=landing&pid=1738&project=7096&sign=457a3f06ea55593b6204b992963cf762&theme=201",
                 this.urlBuilderFactory.getMobilePayment().getUrl()
@@ -50,7 +52,7 @@ public class UrlBuilderFactoryTest {
     }
 
     @Test
-    public void testGetDirectPayment() throws NoSuchAlgorithmException {
+    public void testGetDirectPayment() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?marketplace=landing&pid=6&project=7096&sign=094eb3c634f2612dead38608dc20eaec",
                 this.urlBuilderFactory.getDirectPayment("6").getUrl()
@@ -58,7 +60,7 @@ public class UrlBuilderFactoryTest {
     }
 
     @Test
-    public void testGetMobileVersion() throws NoSuchAlgorithmException {
+    public void testGetMobileVersion() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         assertEquals(
                 "https://secure.xsolla.com/paystation2/?marketplace=mobile&project=7096&sign=094eb3c634f2612dead38608dc20eaec",
                 this.urlBuilderFactory.getMobileVersion().getUrl()

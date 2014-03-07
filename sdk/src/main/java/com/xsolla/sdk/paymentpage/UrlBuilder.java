@@ -7,8 +7,11 @@ import com.xsolla.sdk.User;
 import org.apache.commons.collections.SetUtils;
 import org.apache.commons.exec.util.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -180,7 +183,7 @@ public class UrlBuilder {
         return this.setParameter("country",  country);
     }
 
-    public String getUrl(String baseUrl) throws NoSuchAlgorithmException {
+    public String getUrl(String baseUrl) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         @SuppressWarnings("unchecked")
         Map<String, String> parameters = MapUtils.merge(this.parameters, this.immutableParameters);
         parameters.put("project", String.valueOf(this.project.getProjectId()));
@@ -196,17 +199,27 @@ public class UrlBuilder {
         return this.buildUrl(baseUrl, parameters);
     }
 
-    public String getUrl() throws NoSuchAlgorithmException {
+    public String getUrl() throws NoSuchAlgorithmException, UnsupportedEncodingException {
         return this.getUrl(BASE_URL);
     }
 
-    protected String buildUrl(String baseUrl, Map<String, String> parameters) {
-        AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
-        AsyncHttpClient.BoundRequestBuilder boundRequestBuilder = asyncHttpClient.prepareGet(baseUrl);
-        for (String key : new TreeSet<>(parameters.keySet())) {
-            boundRequestBuilder.addQueryParameter(key, parameters.get(key));
+    protected String buildUrl(String baseUrl, Map<String, String> parameters) throws UnsupportedEncodingException {
+        TreeSet<String> sortedKeys = new TreeSet<>(parameters.keySet());
+        Iterator<String> parametersIterator = sortedKeys.iterator();
+        String key = parametersIterator.next();
+        StringBuilder urlParametersStringBuilder = new StringBuilder(baseUrl)
+                .append(this.encodeParameter(key, parameters.get(key)));
+        while (parametersIterator.hasNext()) {
+            key = parametersIterator.next();
+            urlParametersStringBuilder.append('&').append(this.encodeParameter(key, parameters.get(key)));
         }
-        return boundRequestBuilder.build().getUrl();
+        return urlParametersStringBuilder.toString();
+    }
+
+    protected String encodeParameter(String key, String value) throws UnsupportedEncodingException {
+        return new StringBuilder(URLEncoder.encode(key, "UTF-8"))
+                .append('=').append(URLEncoder.encode(value, "UTF-8"))
+                .toString();
     }
 
     protected String getLockedParametersString() {
