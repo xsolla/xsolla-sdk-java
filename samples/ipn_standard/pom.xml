@@ -6,7 +6,7 @@
 
     <groupId>ipn_standard</groupId>
     <artifactId>ipn_standard</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <repositories>
         <repository>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.xsolla</groupId>
             <artifactId>sdk</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 

@@ -17,7 +17,7 @@ Add to your pom.xml:
 <dependency>
     <groupId>com.xsolla</groupId>
     <artifactId>sdk</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
