@@ -31,8 +31,8 @@ public class PaymentPage {
                     .getUrl();
             System.out.println("URL to PayStation payment page: " + url);
 
-        } catch (NoSuchAlgorithmException e) {
-            System.out.print("The problem of creating a signature. No MD5 algorithm in your Java environment.");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
