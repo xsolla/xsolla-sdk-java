@@ -180,7 +180,6 @@ public class SubscriptionsApiTest {
         this.queryParameters.add("subscription_id", String.valueOf(subscriptionId));
         this.queryParameters.add("merchant_id", String.valueOf(projectId));
         this.queryParameters.add("amount_virtual", String.valueOf(amount));
-        this.queryParameters.add("card_cvv", null);
     }
 
     @Test
