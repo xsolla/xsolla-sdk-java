@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/xsolla/xsolla-sdk-java.png?branch=master)](https://travis-ci.org/xsolla/xsolla-sdk-java)
 
-An official SDK for interacting with [Xsolla HTTP API](http://developers.xsolla.com/api.html)
+An official SDK for interacting with [Xsolla API](http://developers.xsolla.com/api.html)
 
 ## Requirements
 
